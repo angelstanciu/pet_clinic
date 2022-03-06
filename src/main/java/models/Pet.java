@@ -1,4 +1,4 @@
-
+package models;
 
 public class Pet {
     private String rase;
@@ -40,7 +40,7 @@ public class Pet {
 
     @Override
     public String toString() {
-        return "Pet{" +
+        return "models.Pet{" +
                 "rase='" + rase + '\'' +
                 ", birthDate='" + birthDate + '\'' +
                 ", isVaccinated=" + isVaccinated +

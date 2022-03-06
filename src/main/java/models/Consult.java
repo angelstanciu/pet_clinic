@@ -1,3 +1,7 @@
+package models;
+
+import models.Veterinarian;
+
 public class Consult {
     private Veterinarian veterinarian;
     private Pet pet;
@@ -45,7 +49,7 @@ public class Consult {
 
     @Override
     public String toString() {
-        return "Consult{" +
+        return "models.Consult{" +
                 "veterinarian=" + veterinarian +
                 ", pet=" + pet +
                 ", date='" + date + '\'' +
