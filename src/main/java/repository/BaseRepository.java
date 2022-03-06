@@ -1,3 +1,5 @@
+package repository;
+
 import java.util.Optional;
 
 public interface BaseRepository<T, ID> {
