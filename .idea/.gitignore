@@ -1,0 +1,10 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+/.idea/
+/compiler.xml
+/misc.xml
+/modules.xml
+/runConfigurations.xml
+/vcs.xml
+/target
