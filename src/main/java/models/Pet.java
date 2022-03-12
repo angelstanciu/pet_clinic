@@ -14,17 +14,17 @@ public class Pet {
     @Column(name = "breed")
     private String breed;
 
-    @Column(name = "birthDate")
+    @Column(name = "birth_date")
     private String birthDate;
 
-    @Column(name = "isVaccinated")
-    private boolean isVaccinated;
+    @Column(name = "is_vaccinated")
+    private Boolean isVaccinated;
 
     @Column(name = "owner")
     private String owner;
 
     @ManyToMany
-    @JoinTable(name="pets_veterinarians")
+    @JoinTable(name="pet_veterinarian")
     private List<Veterinarian> veterinarians;
 
     @OneToOne(mappedBy = "pet")

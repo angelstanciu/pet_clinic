@@ -11,9 +11,9 @@ public class Consult {
     @Column(name = "consult_id")
     private Integer id;
 
-    @ManyToMany
+    @ManyToOne
     @JoinTable(name = "consult_veterinarian")
-    private List<Veterinarian> veterinarians;
+    private Veterinarian veterinarian;
 
     @OneToOne
     @JoinColumn(name = "pet_id")
@@ -41,12 +41,12 @@ public class Consult {
         this.id = id;
     }
 
-    public List<Veterinarian> getVeterinarians() {
-        return veterinarians;
+    public Veterinarian getVeterinarian() {
+        return veterinarian;
     }
 
-    public void setVeterinarians(List<Veterinarian> veterinarians) {
-        this.veterinarians = veterinarians;
+    public void setVeterinarian(Veterinarian veterinarian) {
+        this.veterinarian = veterinarian;
     }
 
     public Pet getPet() {

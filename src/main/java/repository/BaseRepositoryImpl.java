@@ -20,6 +20,7 @@ public class BaseRepositoryImpl<T, ID> implements BaseRepository<T, ID> {
     public Optional<T> findById(ID id) {
         Session session = SessionManager.getSessionFactory().openSession();
         T entity = session.find(clazz, id);
+        session.close();
         return Optional.ofNullable(entity);
     }
 
@@ -29,8 +30,9 @@ public class BaseRepositoryImpl<T, ID> implements BaseRepository<T, ID> {
     @Override
     public void save(T entity) {
         Transaction transaction = null;
+        Session session = null;
         try {
-            Session session = SessionManager.getSessionFactory().openSession();
+            session = SessionManager.getSessionFactory().openSession();
 
             transaction = session.beginTransaction();
 
@@ -44,14 +46,18 @@ public class BaseRepositoryImpl<T, ID> implements BaseRepository<T, ID> {
             if (transaction != null) {
                 transaction.rollback();
             }
+            if (session != null) {
+                session.close();
+            }
         }
     }
 
     @Override
     public void update(T entity) {
         Transaction transaction = null;
+        Session session = null;
         try {
-            Session session = SessionManager.getSessionFactory().openSession();
+            session = SessionManager.getSessionFactory().openSession();
 
             transaction = session.beginTransaction();
 
@@ -65,14 +71,18 @@ public class BaseRepositoryImpl<T, ID> implements BaseRepository<T, ID> {
             if (transaction != null) {
                 transaction.rollback();
             }
+            if (session != null) {
+                session.close();
+            }
         }
     }
 
     @Override
     public void delete(T entity) {
         Transaction transaction = null;
+        Session session = null;
         try {
-            Session session = SessionManager.getSessionFactory().openSession();
+            session = SessionManager.getSessionFactory().openSession();
 
             transaction = session.beginTransaction();
 
@@ -85,6 +95,9 @@ public class BaseRepositoryImpl<T, ID> implements BaseRepository<T, ID> {
             e.printStackTrace();
             if (transaction != null) {
                 transaction.rollback();
+            }
+            if (session != null) {
+                session.close();
             }
         }
     }
