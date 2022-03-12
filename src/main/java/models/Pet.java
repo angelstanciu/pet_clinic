@@ -1,17 +1,75 @@
 package models;
 
-public class Pet {
-    private String rase;
-    private String birthDate;
-    private boolean isVaccinated;
-    private String  owner;
+import javax.persistence.*;
+import java.util.List;
 
-    public String getRase() {
-        return rase;
+@Entity
+@Table(name = "pet")
+public class Pet {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pet_id")
+    private Integer id;
+
+    @Column(name = "breed")
+    private String breed;
+
+    @Column(name = "birthDate")
+    private String birthDate;
+
+    @Column(name = "isVaccinated")
+    private boolean isVaccinated;
+
+    @Column(name = "owner")
+    private String owner;
+
+    @ManyToMany
+    @JoinTable(name="pets_veterinarians")
+    private List<Veterinarian> veterinarians;
+
+    @OneToOne(mappedBy = "pet")
+    private Consult consult;
+
+    public Pet(String breed, String birthDate, boolean isVaccinated, String owner) {
+        this.breed = breed;
+        this.birthDate = birthDate;
+        this.isVaccinated = isVaccinated;
+        this.owner = owner;
     }
 
-    public void setRase(String rase) {
-        this.rase = rase;
+    public Pet() {
+    }
+
+    public List<Veterinarian> getVeterinarians() {
+        return veterinarians;
+    }
+
+    public void setVeterinarians(List<Veterinarian> veterinarians) {
+        this.veterinarians = veterinarians;
+    }
+
+    public Consult getConsult() {
+        return consult;
+    }
+
+    public void setConsult(Consult consult) {
+        this.consult = consult;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
     }
 
     public String getBirthDate() {
@@ -40,8 +98,9 @@ public class Pet {
 
     @Override
     public String toString() {
-        return "models.Pet{" +
-                "rase='" + rase + '\'' +
+        return "Pet{" +
+                "id=" + id +
+                ", breed='" + breed + '\'' +
                 ", birthDate='" + birthDate + '\'' +
                 ", isVaccinated=" + isVaccinated +
                 ", owner='" + owner + '\'' +
