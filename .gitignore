@@ -16,4 +16,8 @@
 /modules.xml
 /runConfigurations.xml
 /vcs.xml
+<<<<<<< Updated upstream
 /.idea/*
+=======
+/.idea/*
+>>>>>>> Stashed changes
