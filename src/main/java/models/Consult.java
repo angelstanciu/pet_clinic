@@ -1,26 +1,52 @@
 package models;
 
-import models.Veterinarian;
+import javax.persistence.*;
+import java.util.List;
 
+@Entity
+@Table(name = "consult")
 public class Consult {
-    private Veterinarian veterinarian;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "consult_id")
+    private Integer id;
+
+    @ManyToMany
+    @JoinTable(name = "consult_veterinarian")
+    private List<Veterinarian> veterinarians;
+
+    @OneToOne
+    @JoinColumn(name = "pet_id")
     private Pet pet;
+
+    @Column(name = "date")
     private String date;
+
+    @Column(name = "description")
     private String description;
 
-    public Consult(Veterinarian veterinarian, Pet pet, String date, String descripion) {
-        this.veterinarian = veterinarian;
-        this.pet = pet;
+    public Consult() {
+    }
+
+    public Consult(String date, String description) {
         this.date = date;
-        this.description = descripion;
+        this.description = description;
     }
 
-    public Veterinarian getVeterinarian() {
-        return veterinarian;
+    public Integer getId() {
+        return id;
     }
 
-    public void setVeterinarian(Veterinarian veterinarian) {
-        this.veterinarian = veterinarian;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public List<Veterinarian> getVeterinarians() {
+        return veterinarians;
+    }
+
+    public void setVeterinarians(List<Veterinarian> veterinarians) {
+        this.veterinarians = veterinarians;
     }
 
     public Pet getPet() {
@@ -49,9 +75,8 @@ public class Consult {
 
     @Override
     public String toString() {
-        return "models.Consult{" +
-                "veterinarian=" + veterinarian +
-                ", pet=" + pet +
+        return "Consult{" +
+                "id=" + id +
                 ", date='" + date + '\'' +
                 ", description='" + description + '\'' +
                 '}';
