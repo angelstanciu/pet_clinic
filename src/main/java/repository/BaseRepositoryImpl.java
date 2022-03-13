@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import utils.SessionManager;
 
+import java.util.List;
 import java.util.Optional;
 
 public class BaseRepositoryImpl<T, ID> implements BaseRepository<T, ID> {
@@ -22,6 +23,15 @@ public class BaseRepositoryImpl<T, ID> implements BaseRepository<T, ID> {
         T entity = session.find(clazz, id);
         session.close();
         return Optional.ofNullable(entity);
+    }
+
+    @Override
+    public List<T> findAll() {
+        Session session = SessionManager.getSessionFactory().openSession();
+        List<T>entityList = session.createQuery("from "+clazz.getSimpleName(),clazz).list();
+        session.close();
+
+        return entityList;
     }
 
     /**

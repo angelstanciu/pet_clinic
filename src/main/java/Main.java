@@ -12,6 +12,7 @@ public class Main {
     private static final ConsultRepository consultRepository = new ConsultRepositoryImpl();
     private static final PetRepository petRepository = new PetRepositoryImpl();
     private static final VeterinarianRepository veterinarianRepository = new VeterinarianRepositoryImpl();
+    private static final BackupRepository backupRepository = new BackupRepository();
 
     public static void main(String[] args) {
         startApp();
@@ -20,6 +21,7 @@ public class Main {
 
     public static void startApp() {
         showMenu();
+
         int option;
         String option2 = null;
         do {
@@ -54,6 +56,16 @@ public class Main {
                         case 2 -> showConsult();
                         case 3 -> updateConsult();
                         case 4 -> deleteConsult();
+                    }
+                }
+                case 4 -> {
+                    showBackUpMenu();
+                    int opt = askToChoose();
+                    switch (opt) {
+                        case 1 -> backupRepository.backUpConsult();
+//                        case 2 -> backUpPet();
+//                        case 3 -> backUpVeterinarian();
+
                     }
                 }
                 case 0 -> exit();
@@ -243,6 +255,14 @@ public class Main {
         System.out.println("1. Veterinarian Menu");
         System.out.println("2. Pet Menu");
         System.out.println("3. Consult Menu");
+        System.out.println("4. BackUp Menu");
+        System.out.println("Press '0' to exit application");
+    }
+    public static void showBackUpMenu() {
+        System.out.println();
+        System.out.println("1. Veterinarian ");
+        System.out.println("2. Pet ");
+        System.out.println("3. Consult ");
         System.out.println("Press '0' to exit application");
     }
 
