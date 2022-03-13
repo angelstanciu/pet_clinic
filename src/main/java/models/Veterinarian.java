@@ -1,11 +1,12 @@
 package models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "veterinarian")
-public class Veterinarian {
+public class Veterinarian implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
