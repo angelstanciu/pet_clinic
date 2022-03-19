@@ -3,6 +3,7 @@ package models;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "pet")
@@ -95,6 +96,19 @@ public class Pet implements Serializable {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pet pet = (Pet) o;
+        return Objects.equals(breed, pet.breed) && Objects.equals(birthDate, pet.birthDate) && Objects.equals(isVaccinated, pet.isVaccinated) && Objects.equals(owner, pet.owner);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(breed, birthDate, isVaccinated, owner);
     }
 
     @Override

@@ -7,12 +7,6 @@ import models.Veterinarian;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-
-import static java.nio.file.StandardOpenOption.*;
 
 public class BackupRepository {
 
@@ -28,7 +22,7 @@ public class BackupRepository {
 
     public void backUpConsult() {
         try {
-            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("consult_backup.ser"));
+            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("src/main/resources/consult_backup.ser"));
             for (Consult consult : this.consultRepository.findAll()) {
                 output.writeObject(consult);
             }
@@ -40,7 +34,7 @@ public class BackupRepository {
 
     public void backUpVeterinarian() {
         try {
-            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("veterinarian_backup.ser"));
+            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("src/main/resources/veterinarian_backup.ser"));
             for (Veterinarian veterinarian : this.veterinarianRepository.findAll()) {
                 output.writeObject(veterinarian);
             }
@@ -52,7 +46,7 @@ public class BackupRepository {
 
     public void backUpPet() {
         try {
-            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("pet_backup.ser"));
+            ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("src/main/resources/pet_backup.ser"));
             for (Pet pet : this.petRepository.findAll()) {
                 output.writeObject(pet);
             }

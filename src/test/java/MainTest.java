@@ -1,8 +1,11 @@
-import repositorytest.BaseRepositoryImplTest;
+import repositorytest.BaseRepositoryTest;
 
 public class MainTest {
     public static void main(String[] args) {
-        BaseRepositoryImplTest baseRepositoryImplTest = new BaseRepositoryImplTest();
-        baseRepositoryImplTest.saveTest();
+        BaseRepositoryTest baseRepositoryTest = new BaseRepositoryTest();
+        baseRepositoryTest.saveTest();
+        baseRepositoryTest.deleteTest();
+        baseRepositoryTest.updateTest();
+        baseRepositoryTest.findAllTest();
     }
 }
