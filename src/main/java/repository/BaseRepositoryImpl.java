@@ -28,10 +28,19 @@ public class BaseRepositoryImpl<T, ID> implements BaseRepository<T, ID> {
     @Override
     public List<T> findAll() {
         Session session = SessionManager.getSessionFactory().openSession();
-        List<T>entityList = session.createQuery("from "+clazz.getSimpleName(),clazz).list();
+        List<T> entityList = session.createQuery("from " + clazz.getSimpleName(), clazz).list();
         session.close();
 
         return entityList;
+    }
+
+    @Override
+    public List<T> findByName(String name) {
+        Session session = SessionManager.getSessionFactory().openSession();
+        List<T> t = session.createQuery("from " + clazz.getSimpleName(), clazz).list();
+        session.close();
+
+        return t;
     }
 
     /**

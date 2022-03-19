@@ -13,5 +13,7 @@ public interface BaseRepository<T, ID> {
         void delete(T entity);
 
         List<T> findAll();
+
+        List<T> findByName(String name);
     }
 
